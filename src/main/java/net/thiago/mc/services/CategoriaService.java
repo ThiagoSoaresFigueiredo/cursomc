@@ -16,7 +16,12 @@ public class CategoriaService {
 
 	public Categoria buscarPorId(Integer id) {
 		Optional<Categoria> obj = this.repository.findById(id);
-		return obj.orElseThrow(() -> new net.thiago.mc.services.exceptions.ObjectNotFoundException("Categoria não encontrada para o ID: " + id));
+		return obj.orElseThrow(() -> new net.thiago.mc.services.exceptions.ObjectNotFoundException(
+				"Categoria não encontrada para o ID: " + id));
+	}
+
+	public Categoria insert(Categoria obj) {
+		return this.repository.save(obj);
 	}
 
 }
