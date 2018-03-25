@@ -24,4 +24,9 @@ public class CategoriaService {
 		return this.repository.save(obj);
 	}
 
+	public Categoria update(Categoria obj) {
+		this.buscarPorId(obj.getId());
+		return this.repository.save(obj);
+	}
+
 }
