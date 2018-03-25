@@ -3,10 +3,12 @@ package net.thiago.mc.services;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import net.thiago.mc.domain.Categoria;
 import net.thiago.mc.repositories.CategoriaRepository;
+import net.thiago.mc.services.exceptions.DateIntegrityException;
 
 @Service
 public class CategoriaService {
@@ -29,4 +31,13 @@ public class CategoriaService {
 		return this.repository.save(obj);
 	}
 
+	public void delete(Integer id) {
+		this.buscarPorId(id);
+
+		try {
+			this.repository.deleteById(id);
+		} catch (DataIntegrityViolationException e) {
+			throw new DateIntegrityException("Não foi possível excluir uma Categoria que possui Produto vinculado a ela");
+		}
+	}
 }
