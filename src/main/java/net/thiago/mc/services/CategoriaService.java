@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import net.thiago.mc.domain.Categoria;
+import net.thiago.mc.dto.CategoriaDTO;
 import net.thiago.mc.repositories.CategoriaRepository;
 import net.thiago.mc.services.exceptions.DateIntegrityException;
 
@@ -55,5 +56,9 @@ public class CategoriaService {
 		PageRequest pageRequest = new PageRequest(page, linesPerPage, Direction.valueOf(direction), orderBy);
 
 		return this.repository.findAll(pageRequest);
+	}
+
+	public Categoria fromDto(CategoriaDTO dto) {
+		return new Categoria(dto.getId(), dto.getNome());
 	}
 }
