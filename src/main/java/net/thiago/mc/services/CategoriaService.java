@@ -1,5 +1,6 @@
 package net.thiago.mc.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +38,12 @@ public class CategoriaService {
 		try {
 			this.repository.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw new DateIntegrityException("Não foi possível excluir uma Categoria que possui Produto vinculado a ela");
+			throw new DateIntegrityException(
+					"Não foi possível excluir uma Categoria que possui Produto vinculado a ela");
 		}
+	}
+
+	public List<Categoria> findAll() {
+		return this.repository.findAll();
 	}
 }
