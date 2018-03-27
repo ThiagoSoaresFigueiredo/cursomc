@@ -65,7 +65,7 @@ public class ClienteService {
 		try {
 			this.repository.deleteById(id);
 		} catch (DataIntegrityViolationException e) {
-			throw new DateIntegrityException("Não foi possível excluir um Cliente que possui vinculado a ele");
+			throw new DateIntegrityException("Não foi possível excluir um Cliente que possui Pedidos vinculados a ele");
 		}
 	}
 
