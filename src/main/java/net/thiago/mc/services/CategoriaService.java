@@ -32,8 +32,15 @@ public class CategoriaService {
 	}
 
 	public Categoria update(Categoria obj) {
-		this.buscarPorId(obj.getId());
-		return this.repository.save(obj);
+		Categoria newObj = this.buscarPorId(obj.getId());
+
+		this.updateData(newObj, obj);
+
+		return this.repository.save(newObj);
+	}
+
+	private void updateData(Categoria newObj, Categoria obj) {
+		newObj.setNome(obj.getNome());
 	}
 
 	public void delete(Integer id) {
