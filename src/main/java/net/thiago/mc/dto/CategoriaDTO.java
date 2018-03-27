@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import net.thiago.mc.domain.Categoria;
 
+@SuppressWarnings("deprecation")
 public class CategoriaDTO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
